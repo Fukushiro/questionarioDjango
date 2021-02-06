@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+
+{% block conteudo %}
+    <div class="row">
+        <div class="col-sm-12 d-flex justify-content-center">
+            <h3>Cadastrar questionario</h3>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form}}
+                <input type="submit" value="Criar">
+            </form>
+        </div>
+    </div>
+
+
+    {% comment %} <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+    </div>
+    
+    <button id="create_questao" class="btn btn-primary" type="button" name="button">Create book</button>
+    <script>
+        $(document).ready(function() {
+            
+            $("#create_questao").modalForm({
+                formURL: "{% url 'cadastrar_questao' %}"
+            });
+
+        });
+    </script> {% endcomment %}
+{% endblock conteudo %}

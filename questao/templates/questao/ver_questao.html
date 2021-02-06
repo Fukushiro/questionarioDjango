@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block conteudo %}
+    <style>
+        .caixa{
+            display:flex;
+            flex-direction:column;
+        }
+        .questao{
+            border:1px solid red;
+        }
+        .enunciado{
+            border:1px solid blue;
+        }
+        .opcao{
+
+        }
+    </style>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            {{questionario.nome}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="caixa">
+                <form action="" method ="post">
+                    {% csrf_token %}
+                    {% for questao in questoes %}
+                        <div class="questao">
+                            <div class="enunciado">
+                                {{questao.enunciado}}
+                            </div>
+                            
+                            
+                                {% for opcao in opcoes %}
+                                    
+                                    {% if opcao.questao == questao %}
+                                        <div class="opcao">
+                                            <input type="radio" value="{{opcao.id}}" name="{{questao.id}}">
+                                            <label>{{opcao.texto}}</label>
+                                        </div>
+                                    {% endif %}
+                                    
+                                        
+                                {% endfor %}
+                            
+                        </div>
+                    {% endfor %}
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock conteudo %}

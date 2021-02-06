@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+
+{% block conteudo %}
+    <div class="row">
+        <div class="col-sm-12">
+            {% include 'menu.html' with ativo=1 %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Home</h3>
+        </div>
+    </div>
+
+{% endblock conteudo %}

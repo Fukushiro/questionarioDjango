@@ -1,0 +1,17 @@
+<style>
+    .menu li{
+        list-style: none;
+        display:inline-block;
+        
+    }
+</style>
+{% if ativo == 1 %}
+    <ul class="menu">
+        <li><a href={% url 'home' %}>Home</a></li>
+        <li><a href={% url 'cadastrar_ver_questionario' %}>questionarios</a></li>
+        <li></li>
+    </ul>
+{% elif ativo == 2 %}
+
+{% endif %}
+    

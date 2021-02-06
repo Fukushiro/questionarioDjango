@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+{% block conteudo %}
+    <!--link para voltar-->
+    <div class="row">
+        <div class="col-sm-12">
+            <a href="{% url 'cadastrar_ver_questionario' %}">Voltar</a>
+        </div>
+    </div>
+
+    <div class="row"><!--titulo-->
+        <div class="col-sm-12">
+            <h3>Update {{questionario.nome}}</h3>
+        </div>
+    </div>
+    
+    <div class="row"><!--Formulario edit questionario-->
+        <div class="col-sm-12">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form}}
+                <input type="submit" value="Atualizar">
+            </form>
+        </div>
+    </div>
+    
+
+    <div><!--Questoes-->
+        {% for questao in questoes %}
+            <div class="row">
+                <div class="col-sm-12">
+                    {{questao.enunciado}} --> <a href={% url 'update_questao' questionario.id questao.id %}>update</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                </div>
+            </div>
+            </div>
+            
+            <button id="create_questao" class="btn btn-primary" type="button" name="button">Criar questão</button>
+            <script>
+                $(document).ready(function() {
+                    
+                    $("#create_questao").modalForm({
+                        formURL: "{% url 'cadastrar_questao' questionario.id %}"
+                    });
+
+                });
+            </script> 
+        </div>
+    </div>
+{% endblock conteudo %}

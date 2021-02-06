@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block conteudo %}
+    <div class="row">
+        <div class="col-sm-12">
+            {% include 'menu.html' with ativo=1 %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 d-flex justify-content-center">
+            <h3>Lista de Questionarios</h3>
+        </div>
+    </div>
+    <div class="row"><!--cadastrar novo questionario-->
+        <div class="col-sm-12">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form}}
+                <input type="submit" value="Criar">
+            </form>
+        </div>
+    </div>
+    <div class="row"><!--Lista questionarios-->
+        <div class="col-sm-12">
+            {% for questionario in questionarios %}
+                <div>
+                    {{questionario.nome}} ---> <a href="{% url 'update_questionario' questionario.id %}">update</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock conteudo %}
