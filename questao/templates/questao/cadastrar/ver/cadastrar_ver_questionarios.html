@@ -25,7 +25,7 @@
         <div class="col-sm-12">
             {% for questionario in questionarios %}
                 <div>
-                    {{questionario.nome}} ---> <a href="{% url 'update_questionario' questionario.id %}">update</a>
+                    {{questionario.nome}} ---> <a href="{% url 'update_questionario' questionario.id %}">update</a>  --  <a href={% url 'delete_questionario' questionario.id %}>deletar</a>
                 </div>
             {% endfor %}
         </div>

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1w_l*q1jgd)fo%zs27d!g3l!l^m8%v8&cqv6k)oqtv1np)m^by'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -128,4 +128,4 @@ STATICFILES_DIRS = [
 AUTH_USER_MODEL = 'usuario.custom_user'
 
 
-LOGIN_URL = 'usuario.login'
+LOGIN_URL = 'login_view'

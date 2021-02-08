@@ -20,14 +20,14 @@ class Opcao(models.Model):
 
 class Questao(models.Model):
     questionario = models.ForeignKey(
-        Questionario,  on_delete=models.DO_NOTHING)
+        Questionario,  on_delete=models.CASCADE)
     enunciado = models.CharField(max_length=200, null=False, blank=False)
     correta = models.ForeignKey("questao.Opcao", on_delete=models.DO_NOTHING,
                                 null=True, related_name='questaocorreta', blank=True)
 
 
 class Resposta(models.Model):
-    questao = models.ForeignKey(Questao, on_delete=models.DO_NOTHING)
+    questao = models.ForeignKey(Questao, on_delete=models.CASCADE)
     resposta = models.IntegerField()
     usuario = models.ForeignKey(
         custom_user, on_delete=models.CASCADE, null=True)

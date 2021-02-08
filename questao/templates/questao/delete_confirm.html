@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
 
 
-
 {% block conteudo %}
+
     <div class="row">
         <div class="col-sm-12">
-            {% include 'menu.html' with ativo=1 %}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <h3>Home {{user.username}}</h3>
+            <h3>Confirmar a remoção de {{nome}}</h3>
         </div>
     </div>
 
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Confirmar">
+            </form>
+        </div>
+    </div>
 {% endblock conteudo %}

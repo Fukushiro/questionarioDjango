@@ -10,14 +10,19 @@ from questao.views import (
     update_questao,
     cadastrar_opcao,
     home,
+    home_usuario,
+    ver_questionarios,
+    delete_questionario,
 
 )
 from questao import views
 
 urlpatterns = [
     path('home', home, name='home'),
+    path('home_usuario', home_usuario, name='home_usuario'),
     path('ver/<int:id>', ver_questao, name='ver_questao'),
     path('ver/nota/<int:idQuestionario>', ver_nota, name='ver_nota'),
+    path('ver/questionarios', ver_questionarios, name='ver_questionarios'),
     # cadastros
     path('cadastrar/questionario', cadastrar_questionario,
          name='cadastrar_questionario'),
@@ -34,5 +39,8 @@ urlpatterns = [
          update_questionario, name='update_questionario'),
     path('update/questionario/<int:idQuestionario>/questao/<int:idQuestao>',
          update_questao, name='update_questao'),
+    # delete
+    path('delete/questionario/<int:idQuestionario>',
+         delete_questionario, name='delete_questionario'),
 
 ]

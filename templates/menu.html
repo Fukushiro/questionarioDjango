@@ -9,9 +9,13 @@
     <ul class="menu">
         <li><a href={% url 'home' %}>Home</a></li>
         <li><a href={% url 'cadastrar_ver_questionario' %}>questionarios</a></li>
-        <li></li>
+        <li><a href={% url 'usuario_logout' %}>Logout</a></li>
     </ul>
 {% elif ativo == 2 %}
-
+    <ul class="menu">
+        <li><a href={% url 'home_usuario' %}>Home</a></li>
+        <li><a href={% url 'ver_questionarios' %}>Questionarios</a></li>
+        <li><a href={% url 'usuario_logout' %}>Logout</a></li>
+    </ul>
 {% endif %}
     

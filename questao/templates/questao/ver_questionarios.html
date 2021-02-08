@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <div class="row">
+        <div class="col-sm-12">
+            {% include 'menu.html' with ativo=2 %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Questionarios</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ul>
+                
+                {% for questionario in questionarios %}
+                   
+                 <li><a href={% url 'ver_questao' questionario.id %}>{{questionario.nome}}  </a>
+                    {% for nota in notas  %}
+                        {% if nota.questionario == questionario %}
+                            {{nota.nota}}
+                        {% endif %}
+                        
+                        
+                    {% endfor %}
+                    
+                 
+                  </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock conteudo %}

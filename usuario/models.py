@@ -5,6 +5,6 @@ from django.contrib.auth.models import AbstractUser
 
 class custom_user(AbstractUser):
     # 1 -> usuario
-    # -> criador
+    # 2-> criador
     tipo = models.IntegerField(default=1)
     pass

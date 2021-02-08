@@ -13,7 +13,7 @@ from questao.forms import (
     QuestaoFormUpdate,
     OpcaoForm,
 )
-
+from django.contrib.auth.decorators import login_required
 from bootstrap_modal_forms.forms import BSModalModelForm
 from bootstrap_modal_forms.generic import BSModalCreateView
 from django.urls import reverse_lazy
@@ -22,10 +22,21 @@ from django.template.loader import render_to_string
 # Create your views here.
 
 
+@login_required
 def home(request):
 
-    c = {}
+    c = {
+        'user': request.user,
+    }
     return render(request, 'questao/home.html', c)
+
+
+def home_usuario(request):
+
+    c = {
+        'user': request.user,
+    }
+    return render(request, 'questao/home_usuario.html', c)
 # responder
 
 
@@ -92,6 +103,38 @@ def ver_nota(request, idQuestionario):
     }
     return render(request, 'questao/ver_nota.html', c)
 
+
+def ver_questionarios(request):
+    questionarios = Questionario.objects.all()
+    notas = Nota.objects.filter(usuario=request.user).filter(
+        questionario__in=questionarios)
+
+    # 1: {
+    #       'questionarios': questionarios,
+    #      'nota': notas,
+    # }
+    a = {
+
+    }
+    s = 0
+    for questionario in questionarios:
+        nota = None
+        if notas.filter(questionario=questionario).count() > 0:
+            nota = notas.get(questionario=questionario)
+
+        a[str(s)] = {
+            'questionarios': questionario,
+            'nota': nota,
+        }
+        s += 1
+    tamanho = (len(a))
+    c = {
+        'questionarios': questionarios,
+        'a': a,
+        'tamanho': range(tamanho),
+        'notas': notas,
+    }
+    return render(request, 'questao/ver_questionarios.html', c)
 # cadastrar
 
 
@@ -164,7 +207,7 @@ class cadastrar_opcao(BSModalCreateView):
 
 # ver cadastro
 
-
+@login_required
 def cadastrar_ver_questionario(request):
     questionarios = Questionario.objects.all()
     if request.method == 'POST':
@@ -227,3 +270,18 @@ def update_questao(request, idQuestionario, idQuestao):
     }
 
     return render(request, 'questao/cadastrar/update/cadastrar_update_questao.html', c)
+
+
+# delete
+
+
+def delete_questionario(request, idQuestionario):
+    questionario = Questionario.objects.get(id=idQuestionario)
+    if request.method == 'POST':
+        questionario.delete()
+        return redirect('cadastrar_ver_questionario')
+    c = {
+        'nome': questionario.nome,
+
+    }
+    return render(request, 'questao/delete_confirm.html', c)

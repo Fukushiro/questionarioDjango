@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 
-
-
 {% block conteudo %}
     <div class="row">
         <div class="col-sm-12">
-            {% include 'menu.html' with ativo=1 %}
+            {% include 'menu.html' with ativo=2 %}
         </div>
     </div>
     <div class="row">
@@ -13,5 +11,4 @@
             <h3>Home {{user.username}}</h3>
         </div>
     </div>
-
 {% endblock conteudo %}
